@@ -2,21 +2,18 @@
 
 int main()
 {
-  int i,k,j;
+  int i,k,j,n;
   int a[100] = {45,56,77,14,34,55,1,2,99,70};
-       printf("input k(0<=k<9):");
-       scanf("%d",&k);
+    printf("input k(0<=k<9):");
+    scanf("%d",&k);
     for(i=k;i>=0;i--)
-       {
-          printf("%d\n",a[i]);
-          if(i==0)
-          {
-            for(j=9;j>k;j--)
-            {
-            printf("%d\n",a[j]);
-            }
-          }
-       }
+    {
+        printf("%d\n",a[i]);
+    }
+    for(i=9;i>k;i--)
+    {
+        printf("%d\n",a[i]);
+    }
  printf("\n");
  int nmax, p;
  for(i=0;i<9;i++)
@@ -33,17 +30,26 @@ int main()
          }
         }
     }
- int b[10];
+ int b[100];
+ j=0;
  for(i=0;i<10;i++)
+
  {
-  j=0;
   if(a[i]%2==0)
   {
    b[j]=a[i];
-   printf("%d\n",b[j]);
+   j++;
   }
-  j++;
  }
-
+ printf("input n(0<=n<%d):",j);
+ scanf("%d",&n);
+ for(i=n;i>=0;i--)
+    {
+        printf("%d\n",b[i]);
+    }
+    for(i=(j-1);i>n;i--)
+    {
+        printf("%d\n",b[i]);
+    }
     return 0;
 }
