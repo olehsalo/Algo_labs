@@ -1,39 +1,29 @@
-#include<stdio.h>
-#include<string.h>
+int i, j, n, k=0;
+char word[100];
+char sentence1[100];
+char sentence2[100];
 
-int main()
+printf("\nEnter a sentence: ");
+fgets(sentence1, 100, stdin);
+n=strlen(sentence1);
+
+for(i=0;sentence1[i]!=' ';i++)
 {
-    char sentence[255];
-    int i, k, j=0, x=0;
-    printf("enter a sentence:");
-    fgets(sentence, 255, stdin);
-    for(i=0;i<255;i++)
-    {
-        if(sentence[i]==' ')
-        {
-            j=i;
-            break;
-        }
-    }
-    for(i=0;i<j;i++)
-    {
-        for(k=j;k<255;k++)
-        {
-            if(sentence[i]==sentence[k])
-            {
-                if(i==(j-1))
-                {
-                    x=1;
-                    printf("identical word found!\n");
-                    i+=100;
-                    break;
-                }
-            }
-        }
-    }
-    if(x==0)
-    {
-        printf("identical word not found!\n");
-    }
-    return 0;
+    word[i]=sentence1[i];
+}
+for(j=i+1;j<n;j++)
+{
+    sentence2[k]=sentence1[j];
+    k++;
+}
+if(strstr(sentence2,word) != 0)
+{
+    printf("word found!\n");
+}
+else
+{
+    printf("word not found!\n");
+}
+
+return 0;
 }
