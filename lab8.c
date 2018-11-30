@@ -19,10 +19,14 @@ int main()
 {
 	char * filename1 = "students1";
 	char * filename2 = "students2";
+	char * filename3 = "students3";
 	struct student students1[500];
 	struct student students2[500];
+	struct student students3[500];
 	struct student stud1;
-	int n, i, j, k=0;
+	struct student stud2;
+	char Name[20];
+	int n, i, j, m, a=0, b=0, x, k=0;
 	printf("enter the number of students:");
    scanf("%d",&n);
    for(i=0;i<n;i++)
@@ -53,17 +57,90 @@ int main()
    	{
    		if(i!=j)
    		{
-   		   if(strcmp(students1[i].birthdate,students1[j].birthdate)!=0)
+   		   if(strcmp(students1[i].birthdate,students1[j].birthdate)==0)
    		   {
-   			   students2[k]=students1[i];
-   			   k++;
+               if(i<=j)
+               {
+               	a=i;
+               	b=j;
+               }
+               else
+               {
+               	a=j;
+               	b=i;
+               }
    		   }
    		}
+   	}
+   }
+   if(a==0&&b==0)
+   {
+   	for(i=0;i<n;i++)
+   	{
+   		students2[i]=students1[i];
+   		k++;
+   	}
+   }
+   else
+   {
+   	for(i=0;i<a;i++)
+   	{
+   		students2[k]=students1[i];
+   		k++;
+   	}
+   	for(j=a+1;j<b;j++)
+   	{
+   		students2[k]=students1[j];
+   		k++;
+   	}
+   	for(m=b+1;m<n;m++)
+   	{
+   		students2[k]=students1[m];
+   		k++;
    	}
    }
    printf("File 2:\n");
 	save(filename2, students2, k);
    load(filename2);
+   printf("\n");
+
+   printf("enter the name of the student before whom you want to insert another student:");
+   fgets(Name, 20, stdin);
+   fgets(Name, 20, stdin);
+   printf("\nenter the student to insert:\n");
+
+   printf( "Fullname :");
+   fgets(stud2.name, 20, stdin);
+   printf("\n");
+   printf( "Birthdate :");
+   fgets(stud2.birthdate, 20, stdin);
+   printf("\n");
+   printf( "Adress :");
+   fgets(stud2.adress, 20, stdin);
+   printf("\n");
+   printf( "Rate :");
+   scanf("%d",&stud2.rate);
+   printf("\n");
+
+   for(i=0;i<k;i++)
+   {
+   	if(strcmp(Name, students2[i].name)==0)
+   	{
+         x=i;
+   	}
+   }
+   for(j=0;j<x;j++)
+   {
+   	students3[j]=students2[j];
+   }
+   students3[x]=stud2;
+   for(m=x;m<k;m++)
+   {
+   	students3[m+1]=students2[m];
+   }
+   printf("File 3:\n");
+	save(filename3, students3, k+1);
+   load(filename3);
    printf("\n");
 	return 0;
 }
