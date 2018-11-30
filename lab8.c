@@ -26,7 +26,7 @@ int main()
 	struct student stud1;
 	struct student stud2;
 	char Name[20];
-	int n, i, j, m, a=0, b=0, x, k=0;
+	int n, i, j, m, x, k=0;
 	printf("enter the number of students:");
    scanf("%d",&n);
    for(i=0;i<n;i++)
@@ -55,50 +55,16 @@ int main()
    {
    	for(j=0;j<n;j++)
    	{
-   		if(i!=j)
+   		if(i!=j&&i<j)
    		{
-   		   if(strcmp(students1[i].birthdate,students1[j].birthdate)==0)
+   		   if(strcmp(students1[i].birthdate,students1[j].birthdate)!=0)
    		   {
-               if(i<=j)
-               {
-               	a=i;
-               	b=j;
-               }
-               else
-               {
-               	a=j;
-               	b=i;
-               }
+               students2[k]=students1[i];
+               k++;
    		   }
    		}
-   	}
    }
-   if(a==0&&b==0)
-   {
-   	for(i=0;i<n;i++)
-   	{
-   		students2[i]=students1[i];
-   		k++;
-   	}
-   }
-   else
-   {
-   	for(i=0;i<a;i++)
-   	{
-   		students2[k]=students1[i];
-   		k++;
-   	}
-   	for(j=a+1;j<b;j++)
-   	{
-   		students2[k]=students1[j];
-   		k++;
-   	}
-   	for(m=b+1;m<n;m++)
-   	{
-   		students2[k]=students1[m];
-   		k++;
-   	}
-   }
+
    printf("File 2:\n");
 	save(filename2, students2, k);
    load(filename2);
